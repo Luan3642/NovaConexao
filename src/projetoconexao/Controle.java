@@ -40,16 +40,16 @@ public class Controle {
 
             String sql;
 
-            String x = "sim";
+            boolean x = true;
 
-            while (x.equalsIgnoreCase("sim")) {
+            while (x) {
 
                 System.out.println("Qual o nome do livro?");
                 String titulo = leia.nextLine();
                 System.out.println("Qual o nome do autor desse livro?");
                 String autor = leia.nextLine();
                 System.out.println("Qual o preço desse livro?");
-                double preco = leia.nextInt();
+                double preco = leia.nextDouble();
 
                 sql = "INSERT INTO `livro` (`titulo`, `autor`, `preço`)"
                         + "VALUES ('" + titulo + "', " + autor + ", '" + preco + "')";
@@ -57,8 +57,12 @@ public class Controle {
             }
 
             System.out.println("Deseja cadastrar outro livro? (sim/nao)");
-            x = leia.next();
-
+            String resp = leia.next();
+            
+            if(resp.equalsIgnoreCase("nao")){
+                x = false;
+            }
+            
         } catch (SQLException e) {
             System.out.println("ERRO NO SQL");
         }
